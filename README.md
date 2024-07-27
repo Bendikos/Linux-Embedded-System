@@ -60,7 +60,7 @@ sudo apt-get install openssh-server
 
 # 交叉编译器安装
 
-将 [gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz](主文件夹\linux\tool\gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz) 传给Ubuntu
+将 [gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz](主文件夹/linux/tool/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz) 传给Ubuntu
 
 Ubuntu 中创建目录
 
@@ -144,7 +144,7 @@ sudo snap refresh snap-store
 
 # clash依赖关系不满足: libwebkit2gtk-4.0-37
 
- 安装 [libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb](其他重要文件\libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb)  [libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb](其他重要文件\libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb) 即可
+ 安装 [libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb](其他重要文件/libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb)  [libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb](其他重要文件/libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb) 即可
 
 ```shell
 sudo apt install ./libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb ./libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb
