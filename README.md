@@ -167,4 +167,4 @@ sudo rm -rf /dev/sdb #删除sdb节点
 
 # load.imx 在 DDR 中的位置
 
-![load.imx 在 DDR 中的位置](picture/load.imx 在 DDR 中的位置.jpg)
+![load.imx在DDR中的位置](picture/load.imx在DDR中的位置.jpg)
