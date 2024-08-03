@@ -170,6 +170,12 @@ sudo rm -rf /dev/sdb #删除sdb节点
 
 ![load.imx在DDR中的位置](picture/load.imx在DDR中的位置.jpg)
 
+# load.imx 在 MMC 中的位置
+
+![load.imx在MMC中的位置](picture/load.imx在MMC中的位置.jpg)
+
+
+
 # U-Boot
 
 ## 编译 U-Boot
