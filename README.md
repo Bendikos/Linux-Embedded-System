@@ -158,6 +158,7 @@ sudo apt install ./libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb ./libjavascriptcoregt
 ```shell
 ls /dev/sd* #显示存储设备
 
+chmod 777 imxdownload
 ./imxdownload *.bin /dev/sdb #烧录代码
 
 sudo rm -rf /dev/sdb #删除sdb节点
@@ -168,3 +169,118 @@ sudo rm -rf /dev/sdb #删除sdb节点
 # load.imx 在 DDR 中的位置
 
 ![load.imx在DDR中的位置](picture/load.imx在DDR中的位置.jpg)
+
+# U-Boot
+
+## 编译 U-Boot
+
+创建脚本文件 mx6ull_alientek_emmc.sh
+
+在里面输入如下内容: 
+
+```shell
+#!/bin/bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- distclean
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- mx6ull_14x14_ddr512_emmc_defconfig
+make V=1 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j6
+```
+
+给予 mx6ull_alientek_emmc.sh 文件可执行权限，然后就可以使用这个 shell 脚本文件来编译uboot
+
+```shell
+chmod 777 mx6ull_alientek_emmc.sh
+./mx6ull_alientek_emmc.sh
+```
+
+## U-Boot 烧写
+
+使用 imxdownload 软件烧写，命令如 下: 
+
+```shell
+chmod 777 imxdownload
+./imxdownload u-boot.bin /dev/sdb #烧录代码
+```
+
+# 搭建TFTP
+
+安装 tftp-hpa 和tftpd-hpa，命令如下：
+
+```shell
+sudo apt-get install tftp-hpa tftpd-hpa
+sudo apt-get install xinetd
+```
+
+创建一个文件夹
+
+```shell
+mkdir /home/zuozhongkai/linux/tftpboot
+chmod 777 /home/zuozhongkai/linux/tftpboot
+```
+
+配置tftp
+
+```shell
+sudo vim /etc/xinetd.d/tftp
+```
+
+输入如下内容
+
+```c
+server tftp
+{
+	socket_type = dgram
+	protocol = udp
+	wait = yes
+	user = root
+	server = /usr/sbin/in.tftpd
+	server_args = -s /home/zuozhongkai/linux/tftpboot/
+	disable = no
+	per_source = 11
+	cps = 100 2
+	flags = IPv4
+}
+```
+
+ 启动 tftp 服务，命令如下： 
+
+```shell
+sudo service tftpd-hpa start
+```
+
+打开/etc/default/tftpd-hpa 文件
+
+```shell
+sudo vim /etc/default/tftpd-hpa
+```
+
+替换为以下内容
+
+```shell
+# /etc/default/tftpd-hpa
+
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/home/zuozhongkai/linux/tftpboot"
+TFTP_ADDRESS=":69" 
+TFTP_OPTIONS="-l -c -s"
+```
+
+重启 tftp 服务器
+
+```shell
+sudo service tftpd-hpa restart
+```
+
+指令格式
+
+```shell
+tftp 80800000 192.168.x.x:zImage
+```
+
+
+
+
+
+
+
+
+
