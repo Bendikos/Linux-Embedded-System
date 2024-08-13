@@ -47,6 +47,30 @@ sudo /etc/init.d/vsftpd restart
 
 
 
+# NFS 服务开启
+
+```shell
+sudo apt-get install nfs-kernel-server rpcbind
+```
+
+配置 NFS
+
+```shell
+sudo vi /etc/exports
+```
+
+在最后添加以下内容：
+
+```tex
+/home/zuozhongkai/linux/nfs *(rw,sync,no_root_squash) 
+```
+
+重启NFS 服务
+
+```shell
+sudo /etc/init.d/nfs-kernel-server restart
+```
+
 
 
 # SSH 服务开启  
@@ -101,21 +125,13 @@ sudo vim /etc/profile
 
 在末尾输入如下内容
 
-```shell
+```tex
 export PATH=$PATH:/usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin
 ```
 
 
 
 保存退出，重启 Ubuntu 系统
-
-
-
-在使用交叉编译器之前需要安装一下其它的库???
-
-```shell
-sudo apt-get install lsb-core lib32stdc++6
-```
 
 
 
@@ -143,12 +159,11 @@ sudo snap refresh snap-store
 
 
 
-# clash依赖关系不满足: libwebkit2gtk-4.0-37
-
- 安装 [libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb](其他重要文件\libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb)  [libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb](其他重要文件\libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb) 即可
+# U-Boot 图形化配置
 
 ```shell
-sudo apt install ./libwebkit2gtk-4.0-37_2.43.3-1_amd64.deb ./libjavascriptcoregtk-4.0-18_2.43.3-1_amd64.deb
+sudo apt-get install build-essential 
+sudo apt-get install libncurses5-dev 
 ```
 
 
