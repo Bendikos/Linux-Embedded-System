@@ -306,7 +306,9 @@ sudo service tftpd-hpa restart
 tftp 80800000 192.168.x.x:zImage
 ```
 
+# 挂载根文件系统
 
+## TODO
 
 
 
