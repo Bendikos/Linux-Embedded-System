@@ -127,6 +127,7 @@ sudo vim /etc/profile
 
 ```tex
 export PATH=$PATH:/usr/local/arm/gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf/bin
+export ALSA_CONFIG_PATH=/usr/share/arm-alsa/alsa.conf
 ```
 
 
@@ -309,6 +310,20 @@ tftp 80800000 192.168.x.x:zImage
 # 挂载根文件系统
 
 ## TODO
+
+
+
+通过MobaXterm在uboot里输入
+
+```shell
+setenv bootargs 'console=ttymxc0,115200 root=/dev/nfs nfsroot=192.168.1.111:/home/zuozhongkai/linux/nfs/rootfs,v3,proto=tcp rw ip=192.168.1.184:192.168.1.111:192.168.1.1:255.255.255.0::eth0:off'
+setenv ipaddr 192.168.1.184
+setenv ethaddr b8:ae:1d:01:00:00
+setenv gatewayip 192.168.1.1
+setenv netmask 255.255.255.0
+setenv serverip 192.168.1.111
+saveenv
+```
 
 
 
