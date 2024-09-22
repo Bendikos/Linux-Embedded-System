@@ -309,10 +309,6 @@ tftp 80800000 192.168.x.x:zImage
 
 # 挂载根文件系统
 
-## TODO
-
-
-
 通过MobaXterm在uboot里输入
 
 ```shell
