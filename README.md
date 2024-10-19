@@ -313,6 +313,9 @@ tftp 80800000 192.168.x.x:zImage
 
 ```shell
 setenv bootargs 'console=ttymxc0,115200 root=/dev/nfs nfsroot=192.168.1.111:/home/zuozhongkai/linux/nfs/rootfs,v3,proto=tcp rw ip=192.168.1.184:192.168.1.111:192.168.1.1:255.255.255.0::eth0:off'
+
+setenv bootcmd 'tftp 80800000 zImage;tftp 83000000 imx6ull-alientek-emmc.dtb;bootz 80800000 - 83000000'
+
 setenv ipaddr 192.168.1.184
 setenv ethaddr b8:ae:1d:01:00:00
 setenv gatewayip 192.168.1.1
@@ -322,4 +325,13 @@ saveenv
 ```
 
 
+
+# 其他重要的库
+
+```shell
+sudo apt install bison flex
+sudo apt-get install lib32z1
+sudo apt-get install libssl-dev
+
+```
 
