@@ -14,9 +14,10 @@ sudo vim /etc/vim/vimrc
 
 末尾添加下面的代码
 ```shell
-set ts=4
-set nu
-set noexpandtab
+set tabstop=4      " 设置 Tab 字符的宽度为 4 个字符
+set number         " 在每一行的左边显示行号
+set noexpandtab	   " 使用实际的 Tab 字符，而不是空格
+set shiftwidth=4   " 设置缩进时使用的字符数为 4
 ```
 
 
@@ -98,7 +99,7 @@ sudo mkdir /usr/local/arm
 将交叉编译器复制到/usr/local/arm 中
 
 ```shell
-sudo cp gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz /usr/local/arm/ -f  
+sudo cp gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz /usr/local/arm/ -f 
 ```
 
 ```shell
@@ -313,9 +314,7 @@ tftp 80800000 192.168.x.x:zImage
 
 ```shell
 setenv bootargs 'console=ttymxc0,115200 root=/dev/nfs nfsroot=192.168.1.111:/home/zuozhongkai/linux/nfs/rootfs,v3,proto=tcp rw ip=192.168.1.184:192.168.1.111:192.168.1.1:255.255.255.0::eth0:off'
-
 setenv bootcmd 'tftp 80800000 zImage;tftp 83000000 imx6ull-alientek-emmc.dtb;bootz 80800000 - 83000000'
-
 setenv ipaddr 192.168.1.184
 setenv ethaddr b8:ae:1d:01:00:00
 setenv gatewayip 192.168.1.1
@@ -332,6 +331,8 @@ saveenv
 sudo apt install bison flex
 sudo apt-get install lib32z1
 sudo apt-get install libssl-dev
-
 ```
 
+arm-none-linux-gnueabihf-
+
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabihf- defconfig
