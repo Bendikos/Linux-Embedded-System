@@ -336,3 +336,34 @@ sudo apt-get install libssl-dev
 arm-none-linux-gnueabihf-
 
 make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabihf- defconfig
+
+# 强制安装 pip
+
+在 Ubuntu 24 中，若需像以往一样强制安装 pip，用户可以通过添加 `--break-system-packages` 标志来绕过系统限制。例如，若要强制安装 `imagesearch` 库，可执行以下命令：
+
+```bash
+pip install --user imagesearch --break-system-packages
+```
+
+为避免每次运行 `pip install` 命令时都需要手动添加 `--break-system-packages` 标志，用户可以将此规则写入配置文件。具体操作如下：
+
+1. 创建 `~/.config/pip` 目录（如果该目录不存在）：
+
+    ```bash
+    mkdir -p ~/.config/pip
+    ```
+
+2. 创建 `pip.conf` 配置文件，并写入以下内容：
+
+    ```bash
+    echo -e "[global]\nbreak-system-packages=true" > ~/.config/pip/pip.conf
+    ```
+
+上述命令将在 `~/.config/pip` 目录下创建 `pip.conf` 文件，并添加以下配置：
+
+```tex
+[global]
+break-system-packages=true
+```
+
+完成配置后，用户即可像在 Ubuntu 22.04 及更早版本中一样，直接使用 `pip install` 命令安装 Python 软件包，而无需额外添加 `--break-system-packages` 标志。
